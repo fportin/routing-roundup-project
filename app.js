@@ -9,9 +9,9 @@ app.get(/\w*xyz$/, (req, res) => {          // if url has to end w/xyz, then pri
     res.send("That's all I wrote.")
 });
 
-app.get('/capital-letters/:id', (req, res) => {  //
+app.get('/capital-letters/:id', (req, res) => { 
     //res.send("That's all I wrote.")
-    console.log(req.params)
+    // console.log(req.params)
     let word = (req.params.id).toUpperCase()
     res.send(word)
 });
@@ -25,16 +25,16 @@ app.get('/margot/contact', (req, res) => {  //phase 5 why does the pipe break it
     //res.send("That's all I wrote.")
     res.send("Contact")
 });
-app.get('/about/foo', (req, res) => {  // ends with $ SLASH /w
-    throw new Error
-})
+// app.get('/about/foo', (req, res) => {  // ends with $ SLASH /w
+//     throw new Error
+// })
 
-app.all(/$\/w+\/?/, (req, res) => {  // ends with  / $ SLASH /\ /w+ /?
+app.all(/^\/(\w|-)*\/?$/, (req, res) => {  
     // try {
         //console.log(req.method);
         const method = req.method;
         const path = req.path;
-        const randNum = Math.floor(Math.random() * Math.random() * 10)
+        const randNum = Math.floor(Math.random() * 10)
         res.render('index', { method, path, randNum} )
     // } catch (error)  {
     //     console.error(error)
